@@ -3,25 +3,18 @@
   Local Manifests for Xiaomi Mi 10T (apollo) — PixelOS 16 (sixteen-qpr2)
 
   HOW TO USE:
-    1. Create a new GitHub repo called "local_manifests_apollo" (any name works)
-    2. Put this file inside it as:  roomservice.xml
+    1. Create a new GitHub repo called "local_manifests_apollo"
+    2. Put this file inside it as: roomservice.xml
     3. Push it to GitHub
-    4. Update the git clone URL in build.sh to point to your new repo
-
-  IMPORTANT — BRANCHES:
-    The branches below are guesses based on common naming conventions.
-    You MUST verify that these branches actually exist before building.
-    If a branch doesn't exist, try: main, master, lineage-22, aosp-15, fifteen, etc.
+    4. Update the git clone URL in build.sh with your GitHub username
 -->
 
 <manifest>
 
   <!-- ═══════════════════════════════════════════════════════
        DEVICE TREES
-       These tell Android what your phone's hardware looks like
        ═══════════════════════════════════════════════════════ -->
 
-  <!-- apollo-specific device tree (your exact phone) -->
   <project
     name="xiaomi-sm8250-devs/android_device_xiaomi_apollo"
     path="device/xiaomi/apollo"
@@ -29,8 +22,6 @@
     revision="lineage-22"
     clone-depth="1" />
 
-  <!-- sm8250-common tree (shared config for all Snapdragon 865 Xiaomi phones) -->
-  <!-- NOTE: NTSync SELinux patches will be applied HERE by build.sh -->
   <project
     name="xiaomi-sm8250-devs/android_device_xiaomi_sm8250-common"
     path="device/xiaomi/sm8250-common"
@@ -39,9 +30,7 @@
     clone-depth="1" />
 
   <!-- ═══════════════════════════════════════════════════════
-       VENDOR (proprietary blobs — closed-source drivers from Xiaomi)
-       These are binary files extracted from the stock ROM.
-       TheMuppets hosts them legally for building purposes.
+       VENDOR (proprietary blobs)
        ═══════════════════════════════════════════════════════ -->
 
   <project
@@ -59,34 +48,18 @@
     clone-depth="1" />
 
   <!-- ═══════════════════════════════════════════════════════
-       KERNEL
-       Use your E404 kernel that has NTSync driver built in.
-       Replace this with whichever kernel repo you're using.
+       KERNEL — LineageOS
        ═══════════════════════════════════════════════════════ -->
 
-  <!-- OPTION A: Your E404 CAF kernel (has NTSync driver) -->
-  <!--
   <project
-    name="kvsnr113/xiaomi_sm8250_kernel_e404"
+    name="LineageOS/android_kernel_xiaomi_sm8250"
     path="kernel/xiaomi/sm8250"
     remote="github"
-    revision="sm8250"
+    revision="lineage-22"
     clone-depth="1" />
-  -->
-
-  <!-- OPTION B: Immensity-based kernel (your apollo-perf build) -->
-  <!--
-  <project
-    name="UtsavBalar1231/kernel_xiaomi_sm8250"
-    path="kernel/xiaomi/sm8250"
-    remote="github"
-    revision="your-ntsync-branch"
-    clone-depth="1" />
-  -->
 
   <!-- ═══════════════════════════════════════════════════════
        REMOTE DEFINITIONS
-       These tell repo where "github" means
        ═══════════════════════════════════════════════════════ -->
 
   <remote
